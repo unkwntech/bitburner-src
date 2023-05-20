@@ -1274,7 +1274,7 @@ describe("Stock Market Tests", function () {
     describe("influenceStockThroughServerHack()", function () {
       it("should decrease a stock's second-order forecast when all of its money is hacked", function () {
         const oldSecondOrderForecast = stock.otlkMagForecast;
-        influenceStockThroughServerHack(server, server.moneyMax);
+        influenceStockThroughServerHack(server, server.maxMoney);
         expect(stock.otlkMagForecast).toEqual(oldSecondOrderForecast - forecastForecastChangeFromHack);
       });
 
@@ -1288,7 +1288,7 @@ describe("Stock Market Tests", function () {
     describe("influenceStockThroughServerGrow()", function () {
       it("should increase a stock's second-order forecast when all of its money is grown", function () {
         const oldSecondOrderForecast = stock.otlkMagForecast;
-        influenceStockThroughServerGrow(server, server.moneyMax);
+        influenceStockThroughServerGrow(server, server.maxMoney);
         expect(stock.otlkMagForecast).toEqual(oldSecondOrderForecast + forecastForecastChangeFromHack);
       });
 

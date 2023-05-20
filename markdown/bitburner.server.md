@@ -29,8 +29,8 @@ export interface Server
 |  [maxRam](./bitburner.server.maxram.md) |  | number | RAM (GB) available on this server |
 |  [minDifficulty?](./bitburner.server.mindifficulty.md) |  | number | _(Optional)_ Minimum server security level that this server can be weakened to |
 |  [moneyAvailable?](./bitburner.server.moneyavailable.md) |  | number | _(Optional)_ How much money currently resides on the server and can be hacked |
-|  [moneyMax?](./bitburner.server.moneymax.md) |  | number | _(Optional)_ Maximum amount of money that this server can hold |
-|  [numOpenPortsRequired?](./bitburner.server.numopenportsrequired.md) |  | number | _(Optional)_ Number of open ports required in order to gain admin/root access |
+|  [maxMoney?](./bitburner.server.maxMoney.md) |  | number | _(Optional)_ Maximum amount of money that this server can hold |
+|  [openPortsRequired?](./bitburner.server.openPortsRequired.md) |  | number | _(Optional)_ Number of open ports required in order to gain admin/root access |
 |  [openPortCount?](./bitburner.server.openportcount.md) |  | number | _(Optional)_ How many ports are currently opened on the server |
 |  [organizationName](./bitburner.server.organizationname.md) |  | string | Name of company/faction/etc. that this server belongs to, not applicable to all Servers |
 |  [purchasedByPlayer](./bitburner.server.purchasedbyplayer.md) |  | boolean | Flag indicating whether this is a purchased server |

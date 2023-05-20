@@ -18,7 +18,7 @@ growThreads(server: Server, player: Person, targetMoney: number, cores?: number)
 |  --- | --- | --- |
 |  server | [Server](./bitburner.server.md) | Server info, typically from [getServer](./bitburner.ns.getserver.md) |
 |  player | [Person](./bitburner.person.md) | Player info, typically from [getPlayer](./bitburner.ns.getplayer.md) |
-|  targetMoney | number | Desired final money, capped to server's moneyMax |
+|  targetMoney | number | Desired final money, capped to server's maxMoney |
 |  cores | number | _(Optional)_ Number of cores on the computer that will execute grow. |
 
 **Returns:**

@@ -31,7 +31,7 @@ export function influenceStockThroughServerHack(server: Server, moneyHacked: num
     return;
   }
 
-  const percTotalMoneyHacked = moneyHacked / server.moneyMax;
+  const percTotalMoneyHacked = moneyHacked / server.maxMoney;
   if (Math.random() < percTotalMoneyHacked) {
     stock.changeForecastForecast(stock.otlkMagForecast - forecastForecastChangeFromHack);
   }
@@ -54,7 +54,7 @@ export function influenceStockThroughServerGrow(server: Server, moneyGrown: numb
     return;
   }
 
-  const percTotalMoneyGrown = moneyGrown / server.moneyMax;
+  const percTotalMoneyGrown = moneyGrown / server.maxMoney;
   if (Math.random() < percTotalMoneyGrown) {
     stock.changeForecastForecast(stock.otlkMagForecast + forecastForecastChangeFromHack);
   }

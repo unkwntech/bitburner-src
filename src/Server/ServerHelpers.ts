@@ -74,7 +74,7 @@ export function numCycleForGrowth(server: IServer, growth: number, cores = 1): n
 /**
  * This function calculates the number of threads needed to grow a server from one $amount to a higher $amount
  * (ie, how many threads to grow this server from $200 to $600 for example).
- * It protects the inputs (so putting in INFINITY for targetMoney will use moneyMax, putting in a negative for start will use 0, etc.)
+ * It protects the inputs (so putting in INFINITY for targetMoney will use maxMoney, putting in a negative for start will use 0, etc.)
  * @param server - Server being grown
  * @param targetMoney - How much you want the server grown TO (not by), for instance, to grow from 200 to 600, input 600
  * @param startMoney - How much you are growing the server from, for instance, to grow from 200 to 600, input 200
@@ -89,11 +89,11 @@ export function numCycleForGrowthCorrected(
   person: IPerson = Player,
 ): number {
   if (!server.serverGrowth) return Infinity;
-  const moneyMax = server.moneyMax ?? 1;
+  const maxMoney = server.maxMoney ?? 1;
   const hackDifficulty = server.hackDifficulty ?? 100;
 
   if (startMoney < 0) startMoney = 0; // servers "can't" have less than 0 dollars on them
-  if (targetMoney > moneyMax) targetMoney = moneyMax; // can't grow a server to more than its moneyMax
+  if (targetMoney > maxMoney) targetMoney = maxMoney; // can't grow a server to more than its maxMoney
   if (targetMoney <= startMoney) return 0; // no growth --> no threads
 
   // exponential base adjusted by security
@@ -229,13 +229,13 @@ export function processSingleServerGrowth(server: Server, threads: number, cores
   server.moneyAvailable *= serverGrowth;
 
   // in case of data corruption
-  if (isValidNumber(server.moneyMax) && isNaN(server.moneyAvailable)) {
-    server.moneyAvailable = server.moneyMax;
+  if (isValidNumber(server.maxMoney) && isNaN(server.moneyAvailable)) {
+    server.moneyAvailable = server.maxMoney;
   }
 
   // cap at max
-  if (isValidNumber(server.moneyMax) && server.moneyAvailable > server.moneyMax) {
-    server.moneyAvailable = server.moneyMax;
+  if (isValidNumber(server.maxMoney) && server.moneyAvailable > server.maxMoney) {
+    server.moneyAvailable = server.maxMoney;
   }
 
   // if there was any growth at all, increase security

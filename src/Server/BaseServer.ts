@@ -100,8 +100,8 @@ export abstract class BaseServer implements IServer {
   hackDifficulty?: number;
   minDifficulty?: number;
   moneyAvailable?: number;
-  moneyMax?: number;
-  numOpenPortsRequired?: number;
+  maxMoney?: number;
+  openPortsRequired?: number;
   openPortCount?: number;
   requiredHackingSkill?: number;
   serverGrowth?: number;

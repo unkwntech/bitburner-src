@@ -335,7 +335,7 @@ export const ns: InternalAPI<NSFull> = {
         }
 
         const maxThreadsNeeded = Math.ceil(
-          numCycleForGrowthCorrected(server, server.moneyMax, server.moneyAvailable, cores),
+          numCycleForGrowthCorrected(server, server.maxMoney, server.moneyAvailable, cores),
         );
 
         threads = Math.min(threads, maxThreadsNeeded);
@@ -586,7 +586,7 @@ export const ns: InternalAPI<NSFull> = {
     if (!Player.hasProgram(Programs.NukeProgram.name)) {
       throw helpers.makeRuntimeErrorMsg(ctx, "You do not have the NUKE.exe virus!");
     }
-    if (server.openPortCount < server.numOpenPortsRequired) {
+    if (server.openPortCount < server.openPortsRequired) {
       throw helpers.makeRuntimeErrorMsg(ctx, "Not enough ports opened to use NUKE.exe virus.");
     }
     server.hasAdminRights = true;
@@ -1008,8 +1008,8 @@ export const ns: InternalAPI<NSFull> = {
       hackDifficulty: server.hackDifficulty,
       minDifficulty: server.minDifficulty,
       moneyAvailable: server.moneyAvailable,
-      moneyMax: server.moneyMax,
-      numOpenPortsRequired: server.numOpenPortsRequired,
+      maxMoney: server.maxMoney,
+      openPortsRequired: server.openPortsRequired,
       openPortCount: server.openPortCount,
       requiredHackingSkill: server.requiredHackingSkill,
       serverGrowth: server.serverGrowth,
@@ -1096,8 +1096,8 @@ export const ns: InternalAPI<NSFull> = {
     if (helpers.failOnHacknetServer(ctx, server)) {
       return 0;
     }
-    helpers.log(ctx, () => `returned ${formatMoney(server.moneyMax)} for '${server.hostname}'`);
-    return server.moneyMax;
+    helpers.log(ctx, () => `returned ${formatMoney(server.maxMoney)} for '${server.hostname}'`);
+    return server.maxMoney;
   },
   getServerGrowth: (ctx) => (_hostname) => {
     const hostname = helpers.string(ctx, "hostname", _hostname);
@@ -1122,8 +1122,8 @@ export const ns: InternalAPI<NSFull> = {
     if (helpers.failOnHacknetServer(ctx, server)) {
       return 5;
     }
-    helpers.log(ctx, () => `returned ${server.numOpenPortsRequired} for '${server.hostname}'`);
-    return server.numOpenPortsRequired;
+    helpers.log(ctx, () => `returned ${server.openPortsRequired} for '${server.hostname}'`);
+    return server.openPortsRequired;
   },
   getServerMaxRam: (ctx) => (_hostname) => {
     const hostname = helpers.string(ctx, "hostname", _hostname);

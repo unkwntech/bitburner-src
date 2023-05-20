@@ -125,8 +125,8 @@ function loadStandardServers() {
         "home"
       ],
       "moneyAvailable": 70000,
-      "moneyMax": 1750000,
-      "numOpenPortsRequired": 0,
+      "maxMoney": 1750000,
+      "openPortsRequired": 0,
       "serverGrowth": 3000
     }
   }

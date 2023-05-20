@@ -15,7 +15,7 @@ export interface IConstructorParams {
   isConnectedTo?: boolean;
   maxRam?: number;
   moneyAvailable?: number;
-  numOpenPortsRequired?: number;
+  openPortsRequired?: number;
   organizationName?: string;
   purchasedByPlayer?: boolean;
   requiredHackingSkill?: number;
@@ -40,10 +40,10 @@ export class Server extends BaseServer {
   moneyAvailable = 0;
 
   // Maximum amount of money that this server can hold
-  moneyMax = 0;
+  maxMoney = 0;
 
   // Number of open ports required in order to gain admin/root access
-  numOpenPortsRequired = 5;
+  openPortsRequired = 5;
 
   // How many ports are currently opened on the server
   openPortCount = 0;
@@ -72,7 +72,7 @@ export class Server extends BaseServer {
     this.requiredHackingSkill = params.requiredHackingSkill != null ? params.requiredHackingSkill : 1;
     const baseMoney = params.moneyAvailable ?? 0;
     this.moneyAvailable = baseMoney * BitNodeMultipliers.ServerStartingMoney;
-    this.moneyMax = 25 * baseMoney * BitNodeMultipliers.ServerMaxMoney;
+    this.maxMoney = 25 * baseMoney * BitNodeMultipliers.ServerMaxMoney;
 
     //Hack Difficulty is synonymous with server security. Base Difficulty = Starting difficulty
     const realDifficulty =
@@ -83,7 +83,7 @@ export class Server extends BaseServer {
     this.serverGrowth = params.serverGrowth != null ? params.serverGrowth : 1; //Integer from 0 to 100. Affects money increase from grow()
 
     //Port information, required for porthacking servers to get admin rights
-    this.numOpenPortsRequired = params.numOpenPortsRequired != null ? params.numOpenPortsRequired : 5;
+    this.openPortsRequired = params.openPortsRequired != null ? params.openPortsRequired : 5;
   }
 
   /** Ensures that the server's difficulty (server security) doesn't get too high */
@@ -124,12 +124,12 @@ export class Server extends BaseServer {
    */
   changeMaximumMoney(n: number): void {
     const softCap = 10e12;
-    if (this.moneyMax > softCap) {
-      const aboveCap = this.moneyMax - softCap;
+    if (this.maxMoney > softCap) {
+      const aboveCap = this.maxMoney - softCap;
       n = 1 + (n - 1) / Math.log(aboveCap) / Math.log(8);
     }
 
-    this.moneyMax *= n;
+    this.maxMoney *= n;
   }
 
   /** Strengthens a server's security level (difficulty) by the specified amount */

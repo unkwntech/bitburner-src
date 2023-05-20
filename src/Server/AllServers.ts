@@ -120,7 +120,7 @@ interface IServerParams {
   ip: string;
   maxRam?: number;
   moneyAvailable?: number;
-  numOpenPortsRequired: number;
+  openPortsRequired: number;
   organizationName: string;
   requiredHackingSkill?: number;
   serverGrowth?: number;
@@ -143,7 +143,7 @@ export function initForeignServers(homeComputer: Server): void {
     const serverParams: IServerParams = {
       hostname: metadata.hostname,
       ip: createUniqueRandomIp(),
-      numOpenPortsRequired: metadata.numOpenPortsRequired,
+      openPortsRequired: metadata.openPortsRequired,
       organizationName: metadata.organizationName,
     };
 

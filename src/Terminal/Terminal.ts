@@ -337,7 +337,7 @@ export class Terminal {
         `Total money available on server: ${currServ instanceof Server ? formatMoney(currServ.moneyAvailable) : "N/A"}`,
       );
       if (currServ instanceof Server) {
-        const numPort = currServ.numOpenPortsRequired;
+        const numPort = currServ.openPortsRequired;
         this.print("Required number of open ports for NUKE: " + (!isHacknet ? numPort : "N/A"));
         this.print("SSH port: " + (currServ.sshPortOpen ? "Open" : "Closed"));
         this.print("FTP port: " + (currServ.ftpPortOpen ? "Open" : "Closed"));
@@ -551,8 +551,8 @@ export class Terminal {
           `${dashes}Root Access: ${c}${!isHacknet ? ", Required hacking skill: " + s.requiredHackingSkill : ""}`,
         );
 
-        if (s.hasOwnProperty("numOpenPortsRequired")) {
-          this.print(dashes + "Number of open ports required to NUKE: " + s.numOpenPortsRequired);
+        if (s.hasOwnProperty("openPortsRequired")) {
+          this.print(dashes + "Number of open ports required to NUKE: " + s.openPortsRequired);
         }
       }
       this.print(dashes + "RAM: " + formatRam(s.maxRam));

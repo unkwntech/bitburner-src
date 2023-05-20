@@ -298,7 +298,7 @@ export const achievements: Record<string, Achievement> = {
     Condition: (): boolean => {
       for (const s of GetAllServers()) {
         if (s instanceof Server) {
-          if (s.moneyMax > 0 && s.moneyAvailable === 0) return true;
+          if (s.maxMoney > 0 && s.moneyAvailable === 0) return true;
         }
       }
       return false;

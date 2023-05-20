@@ -61,13 +61,13 @@ export function Servers(): React.ReactElement {
     const s = GetServer(server);
     if (s === null) return;
     if (!(s instanceof Server)) return;
-    s.moneyAvailable = s.moneyMax;
+    s.moneyAvailable = s.maxMoney;
   }
 
   function maxAllMoney(): void {
     for (const s of GetAllServers()) {
       if (!(s instanceof Server)) return;
-      s.moneyAvailable = s.moneyMax;
+      s.moneyAvailable = s.maxMoney;
     }
   }
 

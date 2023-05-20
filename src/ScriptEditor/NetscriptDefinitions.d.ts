@@ -508,10 +508,10 @@ export interface Server {
   moneyAvailable?: number;
 
   /** Maximum amount of money that this server can hold */
-  moneyMax?: number;
+  maxMoney?: number;
 
   /** Number of open ports required in order to gain admin/root access */
-  numOpenPortsRequired?: number;
+  openPortsRequired?: number;
 
   /** How many ports are currently opened on the server */
   openPortCount?: number;
@@ -4073,7 +4073,7 @@ interface HackingFormulas {
    * Calculate how many threads it will take to grow server to targetMoney. Starting money is server.moneyAvailable.
    * @param server - Server info, typically from {@link NS.getServer | getServer}
    * @param player - Player info, typically from {@link NS.getPlayer | getPlayer}
-   * @param targetMoney - Desired final money, capped to server's moneyMax
+   * @param targetMoney - Desired final money, capped to server's maxMoney
    * @param cores - Number of cores on the computer that will execute grow.
    * @returns The calculated grow threads as an integer, rounded up.
    */
